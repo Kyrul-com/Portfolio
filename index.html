@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Khairul Haqimie — Portfolio</title>
+  <meta name="description" content="Portfolio of Khairul Haqimie — Final‑year Computer Science student focusing on IoT, web, and student leadership." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      /* GTS osu!-style bold orange palette */
+      --orange-1:#ff7a18; /* warm orange */
+      --orange-2:#ff3e00; /* deep orange */
+      --bg:#0f0f0f;
+      --text:#ffffff;
+      --muted:#d6d6d6;
+      --card:#161616;
+      --ring: rgba(255, 122, 24, .45);
+      --shadow: 0 20px 60px rgba(0,0,0,.45);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; color:var(--text); background:var(--bg);
+      font-family:"Inter", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    }
+    /* Top Nav */
+    .nav{
+      position:fixed; inset-inline:0; top:0; z-index:50;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:16px 24px; backdrop-filter:saturate(180%) blur(10px);
+      background:linear-gradient( to bottom, rgba(15,15,15,.85), rgba(15,15,15,.35));
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .brand{display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--text)}
+    .brand-mark{
+      width:40px; height:40px; display:grid; place-items:center; font-weight:900;
+      letter-spacing:.5px;
+      background:linear-gradient(135deg, var(--orange-1), var(--orange-2));
+      border-radius:10px; box-shadow: var(--shadow);
+      font-family:"Montserrat", sans-serif;
+    }
+    .brand span{font-weight:800; font-family:"Montserrat", sans-serif; letter-spacing:.4px}
+    .nav a{color:var(--text); text-decoration:none; font-weight:600}
+    .nav-links{display:flex; gap:20px}
+    .nav-links a{opacity:.9}
+    .nav-links a:hover{opacity:1}
+    .menu-btn{display:none}
+
+    /* Hero */
+    .hero{
+      position:relative; padding:140px 24px 96px; min-height:86svh; overflow:hidden;
+      display:grid; place-items:center; text-align:center;
+      background:
+        radial-gradient(80rem 80rem at 70% -10%, rgba(255,62,0,.20), transparent 60%),
+        radial-gradient(60rem 60rem at -10% 30%, rgba(255,122,24,.18), transparent 60%),
+        linear-gradient(135deg, #121212, #0c0c0c);
+    }
+    .hero::before{
+      content:""; position:absolute; inset:-20% -10% auto; height:70%;
+      background:linear-gradient(135deg, var(--orange-1), var(--orange-2));
+      filter: blur(60px) saturate(140%); opacity:.35; transform: skewY(-6deg);
+    }
+    .hero h1{
+      margin:0 0 12px; font-size: clamp(40px, 8vw, 84px); line-height:1.02;
+      font-family:"Montserrat", sans-serif; font-weight:900; letter-spacing:-1px;
+      text-shadow:0 8px 40px rgba(0,0,0,.45);
+    }
+    .hero p.lede{max-width:900px; margin:0 auto 24px; font-size: clamp(16px, 2.2vw, 22px); color:var(--muted)}
+    .cta{
+      display:inline-flex; align-items:center; gap:10px; padding:14px 20px; border-radius:14px;
+      background:linear-gradient(135deg, var(--orange-1), var(--orange-2));
+      color:#fff; text-decoration:none; font-weight:800; letter-spacing:.3px;
+      box-shadow:0 10px 30px rgba(255,62,0,.35);
+      transform: translateZ(0);
+    }
+    .cta:hover{filter:saturate(110%) brightness(1.02)}
+
+    /* Sections */
+    section{padding:88px 20px}
+    .wrap{max-width:1100px; margin:0 auto}
+    .section-title{
+      font-family:"Montserrat", sans-serif; font-weight:900; letter-spacing:.3px; margin:0 0 28px;
+      font-size: clamp(26px, 3vw, 36px);
+      background: linear-gradient(135deg, var(--orange-1), var(--orange-2));
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+    }
+
+    /* Cards */
+    .cards{display:grid; grid-template-columns: repeat(12, 1fr); gap:18px}
+    .card{grid-column: span 12; padding:22px; background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius:16px; box-shadow:var(--shadow)}
+    .card h3{margin:0 0 6px; font-weight:800; font-size:20px}
+    .meta{color:var(--muted); font-size:14px; margin-bottom:10px}
+    .card ul{margin:8px 0 0 18px}
+
+    /* Skills grid */
+    .grid{display:grid; gap:14px}
+    .grid.cols-3{grid-template-columns: repeat(3, minmax(0,1fr))}
+    .badge{display:inline-block; padding:10px 12px; border-radius:12px; border:1px solid rgba(255,255,255,.1); background:#131313}
+
+    /* Timeline feel for Experience */
+    .experience .card{position:relative;}
+    .experience .card::before{
+      content:""; position:absolute; left:-9px; top:22px; width:10px; height:10px; border-radius:50%;
+      background:linear-gradient(135deg, var(--orange-1), var(--orange-2)); box-shadow:0 0 0 4px rgba(255,255,255,.06);
+    }
+
+    /* Contact */
+    .contact a{color:#fff; text-underline-offset:3px}
+
+    /* Footer */
+    footer{padding:40px 20px 80px; color:var(--muted); text-align:center}
+
+    /* Responsive */
+    @media (min-width:740px){
+      .card{grid-column: span 6}
+      .about .card{grid-column: span 12}
+      .experience .card{grid-column: span 12}
+      .skills .card{grid-column: span 6}
+      .edu .card{grid-column: span 6}
+      .refs .card{grid-column: span 6}
+    }
+    @media (min-width:1000px){
+      .nav-links{gap:28px}
+    }
+
+    /* Subtle focus ring */
+    a:focus-visible, button:focus-visible{outline:2px solid var(--ring); outline-offset:3px; border-radius:12px}
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav" aria-label="Primary">
+    <a class="brand" href="#top">
+      <div class="brand-mark" aria-hidden="true">KH</div>
+      <span>Khairul&nbsp;Haqimie</span>
+    </a>
+    <div class="nav-links" role="menubar">
+      <a href="#about" role="menuitem">About</a>
+      <a href="#experience" role="menuitem">Experience</a>
+      <a href="#skills" role="menuitem">Skills</a>
+      <a href="#education" role="menuitem">Education</a>
+      <a href="#contact" role="menuitem">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header id="top" class="hero" role="banner">
+    <div class="wrap">
+      <h1>Bold Ideas. Real‑World Impact.</h1>
+      <p class="lede">Final‑year Computer Science student with a strong interest in IoT development, problem‑solving, and leadership. Gold Award winner at Innovation Fair 2025 for an IoT‑based project.</p>
+      <div style="margin-top:24px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap">
+        <a class="cta" href="#projects">View Projects</a>
+        <a class="cta" href="#contact" style="background:#1b1b1b; box-shadow:0 10px 30px rgba(0,0,0,.45); border:1px solid rgba(255,255,255,.1)">Contact Me</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- About -->
+  <section id="about" class="about">
+    <div class="wrap">
+      <h2 class="section-title">About Me</h2>
+      <div class="cards">
+        <article class="card">
+          <p>Final‑year Computer Science student with a strong interest in IoT development, problem‑solving, and leadership. Experienced in building real‑world tech solutions and leading student initiatives. Recently earned a <strong>Gold Award</strong> at the Innovation Fair 2025 for an IoT‑based project.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience" class="experience">
+    <div class="wrap">
+      <h2 class="section-title">Experience</h2>
+      <div class="cards">
+        <article class="card">
+          <h3>Student Representative Committee Secretary</h3>
+          <div class="meta">Organizational Management & Training · Feb 2024 – Nov 2024</div>
+          <ul>
+            <li>Led and coordinated student committees and university events.</li>
+            <li>Trained junior members in task delegation and project execution.</li>
+            <li>Managed cross‑functional teams for innovation and outreach programs.</li>
+            <li>Facilitated knowledge‑sharing sessions to build leadership capacity.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Deputy Coordinator — Student Representative Council</h3>
+          <div class="meta">Corporate, Communication & Multimedia · Nov 2024 – Present</div>
+          <ul>
+            <li>In charge of MPP public image and social media posting.</li>
+            <li>Oversaw outreach connections and student activities.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Pengarah — Sekretariat Mahasiswa Anak Pahang (MAMPAN) UiTM</h3>
+          <div class="meta">Jan 2025 – Present</div>
+          <ul>
+            <li>Coordinated with VIPs and external stakeholders for official programs and campus events.</li>
+            <li>Oversaw the welfare and engagement of Anak Pahang students through targeted initiatives and support activities.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills & Languages -->
+  <section id="skills" class="skills">
+    <div class="wrap">
+      <h2 class="section-title">Skills & Languages</h2>
+      <div class="cards">
+        <article class="card">
+          <h3>Technical</h3>
+          <div class="grid cols-3">
+            <span class="badge">IoT: ESP32, Blynk</span>
+            <span class="badge">Sensor Integration</span>
+            <span class="badge">Web Development (FE/BE basics)</span>
+            <span class="badge">Low‑resource ML (research writing)</span>
+            <span class="badge">Graphic Design (poster/media)</span>
+            <span class="badge">Innovation & Problem‑Solving</span>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Leadership & Communication</h3>
+          <div class="grid cols-3">
+            <span class="badge">Public Speaking & Debate</span>
+            <span class="badge">Leadership & Team Mgmt</span>
+            <span class="badge">Event Planning & Coordination</span>
+            <span class="badge">Cross‑Cultural Communication</span>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Languages</h3>
+          <div class="grid cols-3">
+            <span class="badge">English (C2)</span>
+            <span class="badge">Malay</span>
+            <span class="badge">Japanese (N2)</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section id="education" class="edu">
+    <div class="wrap">
+      <h2 class="section-title">Education</h2>
+      <div class="cards">
+        <article class="card">
+          <h3>Diploma in Computer Science</h3>
+          <div class="meta">UiTM Kampus Raub · 2024 – 2026</div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- References (optional) -->
+  <section id="references" class="refs">
+    <div class="wrap">
+      <h2 class="section-title">References</h2>
+      <div class="cards">
+        <article class="card">
+          <h3>Dato’ Sri Hajah Shahaniza binti Haji Shamsuddin</h3>
+          <div class="meta">Pengerusi — (SSAP., DIMP., AMP., BCM.)</div>
+          <p>Email: <a href="mailto:shahaniza@gmail.com">shahaniza@gmail.com</a> · Phone: <a href="tel:+601163464200">011‑63464200</a></p>
+        </article>
+        <article class="card">
+          <h3>Afiq Faez</h3>
+          <div class="meta">Mantan Presiden, Angkatan Belia MFLS</div>
+          <p>Email: <a href="mailto:abmpahang@gmail.com">abmpahang@gmail.com</a> · Phone: <a href="tel:+60197219358">+60 19‑721 9358</a></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <h2 class="section-title">Get In Touch</h2>
+      <div class="cards">
+        <article class="card">
+          <h3>Contact</h3>
+          <p>
+            <strong>Email:</strong> <a href="mailto:kyrul674@gmail.com">kyrul674@gmail.com</a><br>
+            <strong>Phone:</strong> <a href="tel:+60163230803">+60 16‑323 0803</a>
+          </p>
+          <p>
+            <a href="https://www.linkedin.com/in/khairul-haqimie-1a105a2b5/" target="_blank" rel="noopener">LinkedIn</a>
+            &nbsp;•&nbsp;
+            <a href="https://khairulhaqimie.com" target="_blank" rel="noopener">khairulhaqimie.com</a>
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © <span id="y"></span> Khairul Haqimie — Built with ❤️ in Malaysia
+  </footer>
+
+  <script>
+    // mobile menu (future‑proofing) + year stamp
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
